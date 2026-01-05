@@ -4,6 +4,24 @@ server:
 spring:
   application:
     name: gateway-service
+  redis:
+    host: 192.168.1.7
+    port: 6379
+    timeout: 2s
+    lettuce:
+      pool:
+        max-active: 50
+        max-idle: 20
+        min-idle: 5
+        max-wait: 10s
+
+#  cloud:
+#    gateway:
+#      default-filters:
+#        - name: CircuitBreaker
+#          args:
+#            name: globalCircuitBreaker
+#            fallbackUri: forward:/fallback/global
 
 #  cloud:
 #    gateway:
@@ -32,6 +50,8 @@ spring:
 
   cloud:
     gateway:
+      redis-rate-limiter:
+        enabled: true
       default-filters:
         - AddRequestHeader=X-User-Id, #{authentication.name}
         - AddRequestHeader=X-Roles, #{authentication.authorities}
@@ -44,6 +64,23 @@ management:
 
 logging:
   level:
-    org.springframework.security: TRACE
-    org.springframework.security.oauth2: TRACE
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.gateway.filter.ratelimit: DEBUG
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      authCB:
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+
+      userCreateCB:
+        slidingWindowSize: 10
+        failureRateThreshold: 40
+        waitDurationInOpenState: 15s
+
+      userProtectedCB:
+        slidingWindowSize: 20
+        failureRateThreshold: 30
+        waitDurationInOpenState: 20s

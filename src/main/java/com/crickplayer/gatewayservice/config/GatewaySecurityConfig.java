@@ -26,7 +26,8 @@ public class GatewaySecurityConfig {
     @Order(1)
     public SecurityWebFilterChain authChain(ServerHttpSecurity http) {
         return http
-                .securityMatcher(ServerWebExchangeMatchers.pathMatchers(PathUri.AUTH_PATTERN.getUri()))
+                .securityMatcher(ServerWebExchangeMatchers.pathMatchers(
+                        PathUri.AUTH_PATTERN.getUri(), "/saga/**"))
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(ex -> ex.anyExchange().permitAll())
                 .build();
