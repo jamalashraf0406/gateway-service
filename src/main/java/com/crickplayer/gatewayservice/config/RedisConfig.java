@@ -49,14 +49,7 @@ public class RedisConfig {
             ClientResources clientResources) {
 
         // ---- Pool Configuration ----
-        GenericObjectPoolConfig<?> poolConfig = new GenericObjectPoolConfig<>();
-        poolConfig.setMaxTotal(redisProperties.getLettuce().getPool().getMaxActive());
-        poolConfig.setMaxIdle(redisProperties.getLettuce().getPool().getMaxIdle());
-        poolConfig.setMinIdle(redisProperties.getLettuce().getPool().getMinIdle());
-        poolConfig.setMaxWait(
-                Optional.ofNullable(redisProperties.getLettuce().getPool().getMaxWait())
-                        .orElse(Duration.ofSeconds(5))
-        );
+        GenericObjectPoolConfig<String> poolConfig = getStringGenericObjectPoolConfig();
 
         // ---- Redis Node Configuration ----
         System.out.println("PHost: "+ redisProperties.getHost() +"Port: "+redisProperties.getPort());
@@ -87,6 +80,18 @@ public class RedisConfig {
                         .build();
 
         return new LettuceConnectionFactory(redisConfig, clientConfig);
+    }
+
+    private GenericObjectPoolConfig<String> getStringGenericObjectPoolConfig() {
+        GenericObjectPoolConfig<String> poolConfig = new GenericObjectPoolConfig<>();
+        poolConfig.setMaxTotal(redisProperties.getLettuce().getPool().getMaxActive());
+        poolConfig.setMaxIdle(redisProperties.getLettuce().getPool().getMaxIdle());
+        poolConfig.setMinIdle(redisProperties.getLettuce().getPool().getMinIdle());
+        poolConfig.setMaxWait(
+                Optional.ofNullable(redisProperties.getLettuce().getPool().getMaxWait())
+                        .orElse(Duration.ofSeconds(5))
+        );
+        return poolConfig;
     }
 
     /**

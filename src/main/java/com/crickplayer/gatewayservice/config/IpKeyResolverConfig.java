@@ -16,9 +16,6 @@ public class IpKeyResolverConfig {
     @Bean("ipKeyResolver")
     @Primary
     public KeyResolver ipKeyResolver() {
-        log.info("****************************************************************");
-        log.info("********************** Getting IP key resolver *****************");
-        log.info("****************************************************************");
         return exchange -> Mono.just(
                 Objects.requireNonNull(exchange.getRequest()
                                 .getRemoteAddress())
