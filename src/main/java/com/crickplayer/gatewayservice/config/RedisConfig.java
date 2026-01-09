@@ -20,7 +20,6 @@ import org.springframework.data.redis.connection.lettuce.LettucePoolingClientCon
 import org.springframework.data.redis.core.ReactiveStringRedisTemplate;
 
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.Optional;
 
 @Slf4j
@@ -52,7 +51,6 @@ public class RedisConfig {
         GenericObjectPoolConfig<String> poolConfig = getStringGenericObjectPoolConfig();
 
         // ---- Redis Node Configuration ----
-        System.out.println("PHost: "+ redisProperties.getHost() +"Port: "+redisProperties.getPort());
         RedisStandaloneConfiguration redisConfig = new RedisStandaloneConfiguration(
                 environment.getProperty("spring.redis.host"),
                 Integer.valueOf(environment.getProperty("spring.redis.port"))
@@ -119,8 +117,8 @@ public class RedisConfig {
     @Bean
     public ApplicationRunner redisDebug() {
         return args -> {
-            System.out.println(">>> spring.redis.host = " + environment.getProperty("spring.redis.host"));
-            System.out.println(">>> spring.redis.port = " + environment.getProperty("spring.redis.port"));
+            log.info(">>> spring.redis.host = {}", environment.getProperty("spring.redis.host"));
+            log.info(">>> spring.redis.port = {}", environment.getProperty("spring.redis.port"));
         };
     }
 
@@ -130,8 +128,8 @@ public class RedisConfig {
 
         return args -> {
             if (factory instanceof LettuceConnectionFactory lcf) {
-                System.out.println(">>> Redis host used = " + lcf.getHostName());
-                System.out.println(">>> Redis port used = " + lcf.getPort());
+                log.info(">>> Redis host used = {}", lcf.getHostName());
+                log.info(">>> Redis port used = {}", lcf.getPort());
             }
         };
     }
