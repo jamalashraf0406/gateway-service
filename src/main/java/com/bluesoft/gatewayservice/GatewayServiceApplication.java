@@ -1,4 +1,4 @@
-package com.crickplayer.gatewayservice;
+package com.bluesoft.gatewayservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

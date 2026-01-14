@@ -1,4 +1,4 @@
-package com.crickplayer.gatewayservice.config;
+package com.bluesoft.gatewayservice.config;
 
 import io.lettuce.core.resource.ClientResources;
 import lombok.RequiredArgsConstructor;
@@ -132,5 +132,4 @@ public class RedisConfig {
                 log.info(">>> Redis port used = {}", lcf.getPort());
             }
         };
-    }
-}
+    }}

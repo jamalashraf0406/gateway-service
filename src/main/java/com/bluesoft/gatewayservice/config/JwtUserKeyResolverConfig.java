@@ -1,4 +1,4 @@
-package com.crickplayer.gatewayservice.config;
+package com.bluesoft.gatewayservice.config;
 
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.context.annotation.Bean;

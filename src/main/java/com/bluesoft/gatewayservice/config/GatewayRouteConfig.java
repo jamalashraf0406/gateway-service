@@ -1,4 +1,4 @@
-package com.crickplayer.gatewayservice.config;
+package com.bluesoft.gatewayservice.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,7 +22,7 @@ public class GatewayRouteConfig {
               │    ├─ Logging
               │    └─ Header propagation
               │
-              ├─ Rate Limiter (Redis)        ✅ ALL APIs
+              ├─ Rate Limiter (Redis)
               ├─ Circuit Breaker (Resilience4j)
               │
               ├─ Security (JWT Validation)

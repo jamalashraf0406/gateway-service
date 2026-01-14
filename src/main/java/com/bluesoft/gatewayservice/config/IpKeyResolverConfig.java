@@ -1,4 +1,4 @@
-package com.crickplayer.gatewayservice.config;
+package com.bluesoft.gatewayservice.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;

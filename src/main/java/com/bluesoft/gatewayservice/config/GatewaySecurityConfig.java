@@ -1,6 +1,6 @@
-package com.crickplayer.gatewayservice.config;
+package com.bluesoft.gatewayservice.config;
 
-import com.crickplayer.gatewayservice.enums.PathUri;
+import com.bluesoft.gatewayservice.enums.PathUri;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;

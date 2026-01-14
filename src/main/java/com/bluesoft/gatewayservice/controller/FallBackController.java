@@ -1,4 +1,4 @@
-package com.crickplayer.gatewayservice.controller;
+package com.bluesoft.gatewayservice.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

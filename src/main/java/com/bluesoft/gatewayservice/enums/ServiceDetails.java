@@ -1,4 +1,4 @@
-package com.crickplayer.gatewayservice.enums;
+package com.bluesoft.gatewayservice.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

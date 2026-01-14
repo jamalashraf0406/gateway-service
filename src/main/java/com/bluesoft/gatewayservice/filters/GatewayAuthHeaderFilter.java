@@ -1,4 +1,4 @@
-package com.crickplayer.gatewayservice.filters;
+package com.bluesoft.gatewayservice.filters;
 
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;

@@ -1,4 +1,4 @@
-package com.crickplayer.gatewayservice.filters;
+package com.bluesoft.gatewayservice.filters;
 
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
