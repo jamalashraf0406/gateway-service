@@ -31,9 +31,10 @@ public class GatewayRouteConfig {
               ↓
             Microservices
               ├─ Auth Service
-              │    └─ /auth/**, /oauth2/jwks
-              └─ User Service
-                   └─ /user/v1/create
+              │    └─ /auth/**,
+              |    └─ /user/**
+              └─ Order Service
+                   └─ /orders/**
             
             """;
 
@@ -70,7 +71,6 @@ public class GatewayRouteConfig {
                         .path("/saga/**")
                         .filters(f -> f
                                 .filter((exchange, chain) -> {
-                                    log.info("************************* CHECKING ******************");
                                     log.info("Gateway route matched: {}" , exchange.getRequest().getPath());
                                     return chain.filter(exchange);
                                 })
@@ -93,17 +93,16 @@ public class GatewayRouteConfig {
                         .uri("http://localhost:8082")
                 )
 
-                .route("user-protected", r -> r
-                        .path("/user/**")
+                .route("order-command-service", r -> r
+                        .path("/orders/**")
                         .filters(f -> f
                                 .requestRateLimiter(c -> {
                                     c.setRateLimiter(rateLimiter);
                                     c.setKeyResolver(jwtUserKeyResolver);
                                 })
                         )
-                        .uri("lb://USER-SERVICE")
+                        .uri("lb:/ORDER-COMMAND-SERVICE")
                 )
-
                 .build();
     }
 
